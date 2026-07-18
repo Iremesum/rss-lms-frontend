@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import { ThemeProvider } from "./context/ThemeContext";
+import Breadcrumbs from "./components/Breadcrumbs";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
         <ThemeProvider>
           <Header />
           <Navbar />
+          <Breadcrumbs />
           {children}
           <Footer />
         </ThemeProvider>
