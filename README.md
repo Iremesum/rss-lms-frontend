@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RSS Server + LMS Frontend
+
+Assessment 1 for CSE5006 Cloud Web Applications — a frontend-only implementation
+built with Next.js, React, and Tailwind CSS.
+
+## About
+
+This project is the first stage of a multi-stage assignment: building the
+frontend for an RSS Server that will eventually feed content into a Learning
+Management System (LMS). This stage focuses on frontend design, usability,
+and accessibility, using placeholder blog-style content in place of live RSS data.
+
+## Features
+
+- Component-based architecture (Header, Footer, Navbar, Breadcrumbs)
+- Responsive, animated hamburger menu for mobile navigation
+- Light/dark theme toggle, preference saved via cookie
+- Breadcrumb navigation
+- Dynamic feed post pages (`/feeds/[id]`)
+- Expandable "show more/less" content sections
+- Accessibility features: ARIA attributes, keyboard navigation support
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies and run the development server:
 
-```bash
+\`\`\`bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+\`\`\`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/` — pages and routes (App Router)
+- `app/components/` — reusable UI components
+- `app/context/` — theme state management
+- `app/data/` — sample post data (stand-in for RSS data)
 
-## Learn More
+## Author
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Name: Irem Ercan Sumer — Student Number: 22591527
