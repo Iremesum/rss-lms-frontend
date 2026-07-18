@@ -10,6 +10,14 @@ export default function About() {
       </p>
       <p className="mb-2">Name: Irem Ercan Sumer</p>
       <p className="mb-4">Student Number: 22591527</p>
+
+      <h3 className="text-xl font-semibold mb-2">Demo Video</h3>
+      <iframe
+        className="w-full max-w-2xl aspect-video"
+        src="https://www.loom.com/embed/YOUR_VIDEO_ID"
+        title="Demo video explaining the website"
+        allowFullScreen
+      ></iframe>
     </div>
   );
 }
