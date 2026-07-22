@@ -1,8 +1,9 @@
-"use client";
+"use client"; // Needs the theme toggle button, which requires interactivity
 
 import { useTheme } from "../context/ThemeContext";
 
 export default function Settings() {
+  // Get the current theme and the function to switch it, shared from ThemeContext
   const { theme, toggleTheme } = useTheme();
 
   return (

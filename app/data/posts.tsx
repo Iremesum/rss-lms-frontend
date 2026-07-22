@@ -1,3 +1,7 @@
+// Sample/placeholder blog-style content, standing in for real RSS data.
+// This will be replaced by live RSS feed data in Assessment 2.
+// Each post also gets used as the default data if nothing has been saved to localStorage yet.
+
 export const samplePosts = [
   {
     id: 1,

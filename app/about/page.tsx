@@ -1,3 +1,5 @@
+// About page - includes project info, author details, and the demo video (as an iframe)
+
 export default function About() {
   return (
     <div className="p-8">
@@ -12,6 +14,7 @@ export default function About() {
       <p className="mb-4">Student Number: 22591527</p>
 
       <h3 className="text-xl font-semibold mb-2">Demo Video</h3>
+      {/* Embeds an external video using an iframe, as required by the assignment */}
       <iframe
         className="w-full max-w-2xl aspect-video"
         src="https://www.loom.com/embed/YOUR_VIDEO_ID"
