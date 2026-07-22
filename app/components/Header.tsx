@@ -1,3 +1,6 @@
+// Simple header bar shown at the top of every page.
+// Contains the assessment title, as required by the assignment brief.
+
 export default function Header() {
   return (
     <header className="bg-blue-600 text-white p-4">
