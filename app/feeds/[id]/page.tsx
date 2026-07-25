@@ -23,6 +23,7 @@ export default function PostPage() {
   const [editAuthor, setEditAuthor] = useState("");
   const [editSummary, setEditSummary] = useState("");
   const [editContent, setEditContent] = useState("");
+  const [editImageUrl, setEditImageUrl] = useState("");
 
   // Runs when the page loads, or if the id in the URL changes
   useEffect(() => {
@@ -33,9 +34,10 @@ export default function PostPage() {
     // Pre-fill the edit form fields with this post's current data
     if (found) {
       setEditTitle(found.title);
-      setEditAuthor(found.author || ""); // fallback to "" in case older saved data is missing this field
+      setEditAuthor(found.author || "");
       setEditSummary(found.summary);
       setEditContent(found.content);
+      setEditImageUrl(found.imageUrl || "");
     }
   }, [params.id]);
 
@@ -57,14 +59,28 @@ export default function PostPage() {
     // Find this post inside the full list and replace it with the updated version
     const updatedPosts = allPosts.map((p) =>
       p.id === post.id
-        ? { ...p, title: editTitle, author: editAuthor, summary: editSummary, content: editContent }
+        ? {
+            ...p,
+            title: editTitle,
+            author: editAuthor,
+            summary: editSummary,
+            content: editContent,
+            imageUrl: editImageUrl.trim() || undefined,
+          }
         : p
     );
 
     savePosts(updatedPosts); // Save the updated list to localStorage
 
     // Update what's shown on screen immediately, without needing a refresh
-    setPost({ ...post, title: editTitle, author: editAuthor, summary: editSummary, content: editContent });
+    setPost({
+      ...post,
+      title: editTitle,
+      author: editAuthor,
+      summary: editSummary,
+      content: editContent,
+      imageUrl: editImageUrl.trim() || undefined,
+    });
     setIsEditing(false);
   };
 
@@ -81,7 +97,7 @@ export default function PostPage() {
 
   return (
     <div className="p-8">
-      <Link href="/feeds" className="text-blue-600 mb-4 inline-block">
+      <Link href="/feeds" className="text-[#A6192E] mb-4 inline-block">
         ← Back to Feeds
       </Link>
 
@@ -92,17 +108,26 @@ export default function PostPage() {
           <p className="text-sm text-gray-500 mb-4">
             {post.date} · Posted by {post.author}
           </p>
+
+          {post.imageUrl && (
+            <img
+              src={post.imageUrl}
+              alt={post.title}
+              className="w-full max-w-2xl rounded mb-4"
+            />
+          )}
+
           <p className="mb-4">{post.content}</p>
           <div className="flex gap-3">
             <button
               onClick={() => setIsEditing(true)}
-              className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+              className="px-4 py-2 rounded bg-[#A6192E] text-white hover:bg-[#7d1220] transition-colors"
             >
               Edit Announcement
             </button>
             <button
               onClick={handleDelete}
-              className="px-4 py-2 rounded bg-red-600 text-white hover:bg-red-700 transition-colors"
+              className="px-4 py-2 rounded bg-gray-900 text-white hover:bg-gray-700 transition-colors"
             >
               Delete Announcement
             </button>
@@ -154,10 +179,21 @@ export default function PostPage() {
             />
           </label>
 
+          <label className="flex flex-col gap-1">
+            Image URL (optional)
+            <input
+              type="url"
+              value={editImageUrl}
+              onChange={(e) => setEditImageUrl(e.target.value)}
+              placeholder="https://example.com/image.jpg"
+              className="border rounded p-2"
+            />
+          </label>
+
           <div className="flex gap-3">
             <button
               type="submit"
-              className="px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 transition-colors"
+              className="px-4 py-2 rounded bg-[#A6192E] text-white hover:bg-[#7d1220] transition-colors"
             >
               Save Changes
             </button>

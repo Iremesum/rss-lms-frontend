@@ -23,6 +23,7 @@ export default function Feeds() {
   const [newAuthor, setNewAuthor] = useState("");
   const [newSummary, setNewSummary] = useState("");
   const [newContent, setNewContent] = useState("");
+  const [newImageUrl, setNewImageUrl] = useState("");
 
   // Load posts once when the page first loads (from localStorage, via getAllPosts)
   useEffect(() => {
@@ -57,7 +58,8 @@ export default function Feeds() {
       author: newAuthor,
       summary: newSummary,
       content: newContent,
-    };
+      imageUrl: newImageUrl.trim() || undefined, // only save if the user actually entered something
+  };
 
     // Add the new post to the top of the list
     const updatedPosts = [newPost, ...posts];
@@ -70,6 +72,7 @@ export default function Feeds() {
     setNewSummary("");
     setNewContent("");
     setShowForm(false);
+    setNewImageUrl(""); 
   };
 
   return (
@@ -86,20 +89,20 @@ export default function Feeds() {
         className="border rounded-lg p-2 w-full max-w-md mb-4"
       />
 
-      {/* Toggles the create-post form open/closed */}
-      <button
-        onClick={() => setShowForm(!showForm)}
-        className="mt-6 mb-6 px-4 py-2 rounded bg-green-600 text-white hover:bg-green-700 transition-colors block"
-      >
-        {showForm ? "Cancel" : "+ New Announcement"}
-      </button>
-
-      {/* Create post form - only rendered when showForm is true */}
-      {showForm && (
-        <form
-          onSubmit={handleAddPost}
-          className="border rounded-lg p-4 mb-6 flex flex-col gap-3 bg-gray-50"
+        {/* Toggles the create-post form open/closed */}
+        <button
+          onClick={() => setShowForm(!showForm)}
+          className="mt-6 mb-6 px-4 py-2 rounded bg-gray-900 text-white hover:bg-gray-700 transition-colors block"
         >
+          {showForm ? "Cancel" : "+ New Announcement"}
+        </button>
+
+        {/* Create post form - only rendered when showForm is true */}
+        {showForm && (
+          <form
+            onSubmit={handleAddPost}
+            className="border rounded-lg p-4 mb-6 flex flex-col gap-3 bg-gray-50"
+          >
           <label className="flex flex-col gap-1">
             Title
             <input
@@ -145,9 +148,20 @@ export default function Feeds() {
             />
           </label>
 
+          <label className="flex flex-col gap-1">
+            Image URL (optional)
+            <input
+              type="url"
+              value={newImageUrl}
+              onChange={(e) => setNewImageUrl(e.target.value)}
+              placeholder="https://example.com/image.jpg"
+              className="border rounded p-2"
+            />
+          </label>
+          
           <button
             type="submit"
-            className="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700 transition-colors self-start"
+            className="px-4 py-2 rounded bg-[#A6192E] text-white hover:bg-[#7d1220] transition-colors self-start"
           >
             Publish Announcement
           </button>
@@ -172,6 +186,15 @@ export default function Feeds() {
               <p className="text-sm text-gray-500">
                 {post.date} · Posted by {post.author}
               </p>
+
+              {post.imageUrl && (
+                <img
+                  src={post.imageUrl}
+                  alt={post.title}
+                  className="w-full h-40 object-cover rounded mt-2"
+                />
+              )}
+
               <p className="mt-2">{post.summary}</p>
 
               {/* Full content only shows when this post is expanded - the hide/show behaviour */}
@@ -183,12 +206,12 @@ export default function Feeds() {
                 <button
                   onClick={() => toggleExpand(post.id)}
                   aria-expanded={isExpanded} // Tells screen readers if content is currently shown
-                  className="text-blue-600 underline"
+                  className="text-[#A6192E] underline"
                 >
                   {isExpanded ? "Show less ▲" : "Show more ▼"}
                 </button>
                 {/* Links to this post's own dedicated page, using its id in the URL */}
-                <Link href={`/feeds/${post.id}`} className="text-blue-600">
+                <Link href={`/feeds/${post.id}`} className="text-[#A6192E]">
                   Full page →
                 </Link>
               </div>

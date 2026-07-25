@@ -12,6 +12,7 @@ export type Post = {
   author: string;
   summary: string;
   content: string;
+  imageUrl?: string;
 };
 
 const STORAGE_KEY = "lms_posts"; // The key used to store posts in localStorage

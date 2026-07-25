@@ -8,10 +8,10 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   // Shared styling for nav links - includes a hover highlight effect
-  const linkClasses = "px-3 py-1 rounded transition-colors duration-200 hover:bg-blue-700 hover:text-white";
-
+  const linkClasses = "px-3 py-1 rounded transition-colors duration-200 hover:bg-[#7d1220] hover:text-white";
+  
   return (
-    <nav className="bg-blue-500 text-white p-4 relative">
+    <nav className="bg-[#A6192E] text-white p-4 relative">
       <div className="flex justify-between items-center">
         {/* Full navigation links - only visible on larger screens (sm breakpoint and up) */}
         <div className="hidden sm:flex gap-4">
