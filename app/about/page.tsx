@@ -17,7 +17,7 @@ export default function About() {
       {/* Embeds an external video using an iframe, as required by the assignment */}
       <iframe
         className="w-full max-w-2xl aspect-video"
-        src="https://www.loom.com/embed/YOUR_VIDEO_ID"
+        src="/assets/Assessment1Vid.mp4"
         title="Demo video explaining the website"
         allowFullScreen
       ></iframe>
